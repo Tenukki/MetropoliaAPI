@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xsd:schema xmlns:xsd = "https://www.w3.org/2001/XMLSchema" elementFormDefault = "qualified">
+
+<xsd:element name="merkki" type="xsd:string"/>
+<xsd:element name="rekisteri" type="xsd:string"/>
+<xsd:element name="hinta" type="xsd:string"/>
+
+<xsd:complexType name="autoTyyppi">
+    <xsd:sequence>
+        <xsd:element ref="merkki"/>
+        <xsd:element ref="rekisteri"/>
+        <xsd:element ref="hinta"/>
+    </xsd:sequence>
+</xsd:complexType>
+
+<xsd:element name="autot">
+    <xsd:complexType>
+        <xsd:sequence>
+            <xsd:element name = "auto" type = "autoTyyppi" maxOccurs = "unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:element>
+
+</xsd:schema>

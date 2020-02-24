@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE autot
+[
+<!ELEMENT autot (auto+)>
+<!ELEMENT auto (merkki,rekisteri,hinta?)>
+<!ELEMENT merkki (#PCDATA)>
+<!ELEMENT rekisteri (#PCDATA)>
+<!ELEMENT hinta (#PCDATA)>
+]>
+
+
+<autot>
+    <auto>
+        <merkki>Volvo</merkki>
+        <rekisteri>rek-2421</rekisteri>
+        <hinta>42423</hinta>
+    </auto>
+    <auto>
+        <merkki>Vodawdlvo</merkki>
+        <rekisteri>redwak-2421</rekisteri>
+        <hinta>42dwad423</hinta>
+    </auto>
+    <auto>
+        <merkki>Vodawdlvo</merkki>
+        <rekisteri>redwak-2421</rekisteri>
+    </auto>
+</autot>
+
+<!-- https://www.xmlvalidation.com/index.php?id=1&L=0 validator-->
