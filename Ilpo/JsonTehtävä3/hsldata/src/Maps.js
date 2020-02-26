@@ -6,6 +6,7 @@ x: 24.950292890004903
 y: 60.15544479374228
 */
 export class MapContainer extends Component {
+
     render() {
       return (
         <Map google={this.props.google} zoom={11} 

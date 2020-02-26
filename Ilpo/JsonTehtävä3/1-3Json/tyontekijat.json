@@ -1,0 +1,32 @@
+{
+  "tyontekijat": [
+    {
+      "firstName": "Mauno",
+      "lastName": "Ahonen",
+      "address": "Itämerenkatu 26",
+      "homeTel": "045234235",
+      "mobileTel": "12341234"
+    },
+    {
+      "firstName": "Matti",
+      "lastName": "Näsä",
+      "address": "Mannerheimintie 45",
+      "homeTel": null,
+      "mobileTel": "12341234"
+    },
+    {
+      "firstName": "Raimo",
+      "lastName": "Vormisto",
+      "address": "Hämeentie 15",
+      "homeTel": "052353234",
+      "mobileTel": "2642524"
+    },
+    {
+      "firstName": "Timo",
+      "lastName": "Silakka",
+      "address": "Pohjavedenkuja 2",
+      "homeTel": "045234235",
+      "mobileTel": null
+    }
+  ]
+}

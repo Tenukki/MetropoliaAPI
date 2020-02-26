@@ -4,6 +4,7 @@ import Connect from "./connect"
 function App() {
 
   const [events, setEvents] = useState([])
+  const [eventsDate, setEventsDate] = useState([])
 
   const [eventName, setEventsName] = useState("")
   const [location, setLocation] = useState("")
@@ -27,7 +28,8 @@ function App() {
 
   const dates = async () =>{
     const newEvent = await Connect.findDate({start,end})
-    console.log(newEvent)
+    setEventsDate(newEvent)
+    console.log(eventsDate)
   }
 
   const getByName = async () => {
@@ -35,6 +37,15 @@ function App() {
     setEvents(newNames)
     console.log(events)
   }
+
+  const dateObject = eventsDate.map((value) =>
+    <div key={value.event}>
+      <p>{value.event}</p>
+      <p>{value.location}</p>
+      <p>{value.date}</p>
+      <p>-------------</p>
+    </div>
+  )
 
   
 
@@ -69,6 +80,8 @@ function App() {
           loppumisajankohta
           <input type="text" name="name" onChange={({target}) => setEnd(target.value)}/>
         </label>
+
+        {dateObject}
 
         <button onClick={dates}>send</button>
 

@@ -29,13 +29,25 @@ infoRouter.post("/find", async (request, response) => {
 
   let eventJson = {start: a.start,end: a.end}
 
-  let start = eventJson.start.split("/").map(value => parseInt(value))
-  let end = eventJson.end.split("/").map(value => parseInt(value))
+  let start = Date.parse(eventJson.start)
+  let end = Date.parse(eventJson.end)
 
   console.log(start)
   console.log(end)
 
   const blogs = await Info.find({})
+
+  let newBlog = []
+
+  blogs.forEach(value =>{
+    let selected = Date.parse(value.date)
+   // console.log("selected: "+ selected)
+    if(selected <= end && selected >= start){
+      newBlog.push(value)
+    }
+  })
+
+/*
   let filteredBlogs = blogs.map(value =>{
     
     let paska = value.date.split("/").map(value => parseInt(value))
@@ -46,8 +58,9 @@ infoRouter.post("/find", async (request, response) => {
       date: paska
     }
   })
-  console.log(filteredBlogs)
-  response.status(200)
+  */
+  console.log(newBlog)
+  response.json(newBlog)
   /*
   const newInfo = new Info(eventJson)
   await newInfo.save()

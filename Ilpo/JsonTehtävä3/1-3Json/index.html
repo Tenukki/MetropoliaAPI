@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Kova duuni on rahaa</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+
+  <h1>Parit duunarit tässä</h1>
+  <div id="duunarit">
+    <table class="js-duunarit table">
+      <thead>
+        <tr class="js-table-th"></tr>
+      </thead>
+      <tbody class="js-tbody">
+
+      </tbody>
+    </table>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script crossorigin="anonymous">
+    $(async function() {
+
+      // Use jQuery to build a table dynamically in a way that
+      // grows with the dataset (both rows and columns)
+      const createTable = (arr) => {
+        let primer = arr[0];
+        let cols = Object.keys(primer);
+        cols.forEach(e => {
+          $('.js-table-th').append($('<th />', {text : e}));
+        });
+
+        arr.forEach(e => {
+          let row = $('<tr />')
+          Object.values(e).forEach(val => {
+            val ? val = val : val = '-';
+            row.append($('<td />', {text: val}));
+          })
+          $('.js-tbody').append(row);
+        });
+      };
+
+
+      // Fetch data and feed it to createTable()
+      let url = "tyontekijat.json";
+      let data;
+      let res = await fetch(url);
+      res.ok ? data = await res.json() : data = null;
+      if (data) createTable(data.tyontekijat);
+    });
+  </script>
+</body>
+</html>

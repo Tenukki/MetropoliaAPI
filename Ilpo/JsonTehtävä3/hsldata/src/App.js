@@ -11,20 +11,30 @@ const url = "https://services1.arcgis.com/sswNXkUiRoWtrx0t/arcgis/rest/services/
     return reuest.data
   }
 
+  const getWeather = async (lat,lon) => {
+    const weatheUrl =`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=114332134ea7ed53cb7a0e88a863eb5d`
+    console.log(weatheUrl)
+    let reuest = await axios.get(weatheUrl)
+    console.log(reuest.data)
+    return reuest.data
+  }
 
 
 const Notes = ({data,mapjson,setJsonMap}) =>{
+  
 
   const [show,setShow] = useState(true)
-  console.log(data)
+  
   if(show){
     return(
-      <div onClick={() =>{
+      <div onClick={async () =>{
         const neww = {x: data.geometry.x, y: data.geometry.y}
         let list = [...mapjson].concat(neww)
         console.log(list)
         setJsonMap(list)
         setShow(!show)
+        const we =  await getWeather(data.geometry.y,data.geometry.x)
+        console.log(we)
       }}>
       <h3>Osoite: {data.attributes.Name}</h3>
       </div>
@@ -57,7 +67,7 @@ function  App() {
   },[])
 
   const bikes = json.map((data) => 
-    <Notes data={data} mapjson={mapjson }setJsonMap={setJsonMap}/>
+    <Notes key={data.attributes.ID} data={data} mapjson={mapjson }setJsonMap={setJsonMap}/>
   )
 
    
@@ -65,10 +75,15 @@ function  App() {
 
   return (
     <div >
+      <div>
       <MapContainer json={mapjson}/>
+      </div>
+      <div style={{paddingTop: "50%"}}>
       <h1>Pyörät</h1>
       <p>Klikkaa alapuolella olevia osotteita</p>
       {bikes}
+      </div>
+      
     </div>
   );
 }
