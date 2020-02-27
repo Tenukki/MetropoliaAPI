@@ -7,6 +7,14 @@ y: 60.15544479374228
 */
 export class MapContainer extends Component {
 
+  getWeather = async (lat,lon) => {
+    const weatheUrl =`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=114332134ea7ed53cb7a0e88a863eb5d`
+    console.log(weatheUrl)
+    let reuest = await axios.get(weatheUrl)
+    console.log(reuest.data)
+    return reuest.data
+  }
+ 
     render() {
       return (
         <Map google={this.props.google} zoom={11} 
@@ -16,10 +24,15 @@ export class MapContainer extends Component {
           }}
         >
             {this.props.json.map((data)=>
-                <Marker position={{lat:data.y , lng: data.x}} />
+                <Marker position={{lat:data.y , lng: data.x}}
+                label={{fontWeight: 'bold', fontSize: '30px', text:"Tähän lämpötila"}}
+                
+                
+                />
             )}
           
         </Map>
+        
       );
     }
   }
