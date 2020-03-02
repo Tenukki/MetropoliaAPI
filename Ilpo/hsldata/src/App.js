@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import axios from "axios"
 import MapContainer from "./Maps"
@@ -77,13 +76,10 @@ function  App() {
     <Notes saa={setSaa} key={data.attributes.ID} data={data} mapjson={mapjson }setJsonMap={setJsonMap}/>
   )
 
-   
- 
-
   return (
     <div >
-      <div>
-      <MapContainer json={mapjson} ilma={saa}/>
+      <div style={{width: "100%"}}>
+      <MapContainer json={mapjson}/>
       </div>
       <div style={{paddingTop: "50%"}}>
       <h1>Pyörät</h1>
